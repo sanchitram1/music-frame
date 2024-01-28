@@ -1,9 +1,12 @@
 from flask import Flask
+import json
 
 app = Flask(__name__)
 
 with open("data.json", "r") as f:
-    data = f.read()
+    data = json.load(f)
+
+print(data)
 
 
 @app.route("/")
