@@ -25,7 +25,7 @@ def index():
 
 
 @app.route("/listen", methods=["POST"])
-def grow():
+def listen():
     return f"""
     <!DOCTYPE html>
     <html>
