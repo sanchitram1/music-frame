@@ -75,4 +75,4 @@ profile_default/
 .pkgx.yaml
 /templates
 /static
-./main.py
+main.py
