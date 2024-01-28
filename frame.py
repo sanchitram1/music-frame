@@ -35,11 +35,13 @@ def render_page(button_clicked):
         if not button_clicked
         else ""
     )
+    print(button_html)
     fc_frame_button = (
         '<meta> property="fc:frame:button:1" content="Listen" />'
         if not button_clicked
         else ""
     )
+    print(fc_frame_button)
 
     return f"""
     <!DOCTYPE html>
