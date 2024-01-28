@@ -1,1 +1,1 @@
-web: gunicorn app:frame
+web: gunicorn frame:app
