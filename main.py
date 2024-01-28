@@ -124,6 +124,7 @@ def song_info():
         return redirect("/login")
     song_index = int(request.args["song"]) - 1
     song_data = extract_info(session["top_tracks"][song_index])
+    print(song_data)
     return render_template("song.html", **song_data)
 
 
