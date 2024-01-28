@@ -24,17 +24,27 @@ def index():
     """
 
 
-@app.route("/grow", methods=["POST"])
+@app.route("/listen", methods=["POST"])
 def grow():
     return f"""
     <!DOCTYPE html>
     <html>
       <head>
-          <meta property="og:title" content="Pup Frame" />
-          <meta property='og:image' content={data['song']} />
+          <meta property="og:title" content="{data['song']}" />
+          <meta property='og:image' content={data['image']} />
           <meta property="fc:frame" content="vNext" />
           <meta property="fc:frame:image" content="{data['image']}" />
       </head>
+      <body>
+        <audio class="audio-player" controls autoplay loop>
+            <source src="{data['preview']}" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+        <div>
+            <p>Song: {data['song']}</p>
+            <p>Artist: {data['artist']}</p>
+        </div>
+      </body>
     </html>
     """
 
