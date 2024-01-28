@@ -8,15 +8,15 @@ with open("data.json", "r") as f:
 
 @app.route("/")
 def index():
-    return """
+    return f"""
     <!DOCTYPE html>
     <html>
       <head>
           <meta charset="utf-8"/>
           <meta name="viewport" content="width=device-width"/>
-          <meta property="og:title" content="Listen In" />
+          <meta property="og:title" content="Listen" />
           <meta property="fc:frame" content="vNext" />
-          <meta property="fc:frame:image" content="👂🏾" />
+          <meta property="fc:frame:image" content="{data['image']}" />
           <meta property="fc:frame:button:1" content="Listen" />
           <meta property="fc:frame:post_url" content="/listen" />
       </head>
@@ -24,7 +24,7 @@ def index():
     """
 
 
-@app.route("/listen", methods=["POST"])
+@app.route("/listen", methods=["POST", "GET"])
 def listen():
     return f"""
     <!DOCTYPE html>
