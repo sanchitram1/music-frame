@@ -99,11 +99,12 @@ def get_top_tracks():
 
     access_token = session["access_token"]
     headers = get_auth_header(access_token)
-    params = {"limit": 4}
+    params = {"limit": 5}
     response = get(f"{API_BASE_URL}me/top/tracks", headers=headers, params=params)
     try:
         response.raise_for_status()
         session["top_tracks"] = response.json()["items"]
+        print(session["top_tracks"])
         # return redirect(url_for("song_info", **data))
         return redirect("/song")
     except exceptions.HTTPError as e:
