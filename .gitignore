@@ -73,3 +73,6 @@ profile_default/
 # Other stuff
 .env
 .pkgx.yaml
+/templates
+/static
+./main.py
