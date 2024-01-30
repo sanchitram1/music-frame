@@ -9,6 +9,9 @@ const postimage = "https://i.scdn.co/image/ab67616d0000b273d803163d042298404f854
 
 // set up the "/" route
 app.get("/", (req, res) => {
+  console.log(preimage);
+  console.log(req);
+  console.log(res);
   const body = `
   <!DOCTYPE html>
   <html>
@@ -27,6 +30,9 @@ app.get("/", (req, res) => {
 });
 
 app.post("/listen", (req, res) => {
+  console.log(postimage);
+  console.log(req);
+  console.log(res);
   const body = `
   <!DOCTYPE html>
   <html>
