@@ -26,20 +26,14 @@ def render_page(button_clicked):
     image = album
     print(image)
 
-    # display the song and artist, only if the button has been clicked
-    tag_html = f'<meta property="og:description" content="{song} by {artist}" />'
-
-    # display the button only if it hasn't been clicked
-    button_html = (
-        """
-        <form method="post" action="/">
-            <button type="submit" name="button" value="Listen">Listen</button>
-        </form>
-    """
-        if not button_clicked
+    # display the song and artist, only if the button HAS been clicked
+    tag_html = (
+        f'<meta property="og:description" content="{song} by {artist}" />'
+        if button_clicked
         else ""
     )
-    print(button_html)
+
+    # display the button only if it HASN'T been clicked
     fc_frame_button = (
         '<meta property="fc:frame:button:1" content="Listen" />'
         if not button_clicked
