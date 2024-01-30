@@ -1,9 +1,10 @@
-from flask import Flask, request, session
+from flask import Flask, request, jsonify
 import secrets
 
 app = Flask(__name__)
 app.secret_key = secrets.token_urlsafe(16)
 
+# Predefined variables
 album = "https://i.scdn.co/image/ab67616d0000b27350068ff4b9b746b7cf2388aa"
 song = "Idol Eyes"
 artist = "Common Saints"
@@ -13,33 +14,40 @@ preview = "https://p.scdn.co/mp3-preview/f5c6f9354fa9902d2ea5406c64b2a53ec70755e
 @app.route("/", methods=["GET", "POST"])
 def index():
     if request.method == "POST":
-        session["button_clicked"] = True
+        return handle_post_request()
+    else:
+        return render_page(False)
+
+
+def handle_post_request():
+    # Parse the JSON data from the POST request
+    data = request.json
+    button_id = data.get("untrustedData", {}).get("button_id")
+
+    # Check which button was clicked and update the state accordingly
+    if button_id == "Listen":
         return render_page(True)
     else:
-        return render_page(session.get("button_clicked", False))
+        return render_page(False)
 
 
 def render_page(button_clicked):
-    print(button_clicked)
-
-    # always display it as an image of the song you're listening to
+    # Always display it as an image of the song you're listening to
     image = album
-    print(image)
 
-    # display the song and artist, only if the button HAS been clicked
+    # Display the song and artist, only if the button HAS been clicked
     tag_html = (
         f'<meta property="og:description" content="{song} by {artist}" />'
         if button_clicked
         else ""
     )
 
-    # display the button only if it HASN'T been clicked
+    # Display the button only if it HASN'T been clicked
     fc_frame_button = (
         '<meta property="fc:frame:button:1" content="Listen" />'
         if not button_clicked
         else ""
     )
-    print(fc_frame_button)
 
     return f"""
     <!DOCTYPE html>
@@ -53,9 +61,6 @@ def render_page(button_clicked):
           <meta property="fc:frame" content="vNext" />
           <meta property="fc:frame:image" content="{image}" />
           {fc_frame_button}
-          <form action="/" method="post">
-            <input type="submit" value="Listen">
-          </form>
       </head>
     </html>
     """
