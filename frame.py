@@ -22,10 +22,12 @@ def index():
 def handle_post_request():
     # Parse the JSON data from the POST request
     data = request.json
+    print(data)
     button_id = data.get("untrustedData", {}).get("button_id")
 
     # Check which button was clicked and update the state accordingly
-    if button_id == "Listen":
+    if button_id == 1:
+        print("Button was clicked")
         return render_page(True)
     else:
         return render_page(False)
