@@ -18,7 +18,7 @@ app.get("/", (req, res) => {
         <meta property="fc:frame" content="vNext" />
         <meta property="fc:frame:image" content="${preimage}" />
         <meta property="fc:frame:button:1" content="Listen to my song" />
-        <meta property="fc:frame:post_url" content="https://frame-test-5dd2ced0e874.herokuapp.com/listen" />
+        <meta property="fc:frame:post_url" content="https://frame-f717fa7ddeeb.herokuapp.com/listen" />
     </head>
     </html>
     `;
