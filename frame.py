@@ -53,6 +53,9 @@ def render_page(button_clicked):
           <meta property="fc:frame" content="vNext" />
           <meta property="fc:frame:image" content="{image}" />
           {fc_frame_button}
+          <form action="/" method="post">
+            <input type="submit" value="Listen">
+          </form>
       </head>
     </html>
     """
