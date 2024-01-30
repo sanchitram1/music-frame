@@ -5,14 +5,15 @@ app = Flask(__name__)
 app.secret_key = secrets.token_urlsafe(16)
 
 # Predefined variables
-album = "https://i.scdn.co/image/ab67616d0000b27350068ff4b9b746b7cf2388aa"
+preimage = "https://i.scdn.co/image/ab67616d0000b27350068ff4b9b746b7cf2388aa"
+postimage = "https://i.scdn.co/image/ab67616d0000b273d803163d042298404f8547b0"
 song = "Idol Eyes"
 artist = "Common Saints"
-preview = "https://p.scdn.co/mp3-preview/f5c6f9354fa9902d2ea5406c64b2a53ec70755e3?cid=467193f35468464cbda5989d0ebe23e7"
 
 
 @app.route("/", methods=["GET", "POST"])
 def index():
+    print(request.method)
     if request.method == "POST":
         return handle_post_request()
     else:
@@ -35,7 +36,7 @@ def handle_post_request():
 
 def render_page(button_clicked):
     # Always display it as an image of the song you're listening to
-    image = album
+    image = preimage if not button_clicked else postimage
 
     # Display the song and artist, only if the button HAS been clicked
     tag_html = (
